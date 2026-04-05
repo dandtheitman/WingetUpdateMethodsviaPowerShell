@@ -1,0 +1,1 @@
+My project is for endpoint management, focused on executing updates to various software by leveraging Winget through Powershell with an admin account. This can be used in a script to apply updates to various software easily.
