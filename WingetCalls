@@ -1,0 +1,124 @@
+Winget: 
+How to call as administrator 
+
+[gets the path that winget.exe resides in] 
+
+$WingetDir = Get-Childitem -Path "C:\Program Files\WindowsApps\Microsoft.DesktopAppInstaller*" -Include winget.exe -Recurse -ErrorAction SilentlyContinue | Select-Object -Last 1 | %{$_.FullName} | Split-Path  
+
+
+This was a precise path for the winget on a machine that the top command did not work for: 
+
+C:\Program Files\WindowsApps\Microsoft.DesktopAppInstaller_1.25.340.0_x64__8wekyb3d8bbwe 
+
+[changes to directory that winget resides in] 
+
+cd $WingetDir 
+
+ 
+
+Then run .\winget.exe out of there 
+
+  
+
+ To update all apps (sounds good, but may not be good idea based on company deployment methods): 
+.\winget.exe update --all --silent --accept-source-agreements --accept-package-agreements 
+
+  
+
+To update Adobe CreativeCloud only: 
+
+.\winget.exe update --id=Adobe.CreativeCloud -e --silent --accept-source-agreements --accept-package-agreements 
+
+To update Adobe Acrobat only: 
+
+.\winget.exe update --id=Adobe.Acrobat.Reader.64-bit -e --silent --accept-source-agreements --accept-package-agreements 
+
+To update Dell Command Update only: 
+
+.\winget.exe update --id=Dell.CommandUpdate.Universal -e --silent --accept-source-agreements --accept-package-agreements 
+
+To update MS Edge only: 
+
+.\winget.exe update --id= Microsoft.Edge -e --silent --accept-source-agreements --accept-package-agreements  
+
+To update MS Office only: 
+.\winget.exe update --id=Microsoft.Office -e --silent --accept-source-agreements --accept-package-agreements 
+
+ 
+
+To update Notepad++ only: 
+
+.\winget.exe update --id=Notepad++.Notepad++ -e --silent --accept-source-agreements --accept-package-agreements 
+
+To update Docker only: 
+
+.\winget.exe update --id=Docker.DockerDesktop -e --silent --accept-source-agreements --accept-package-agreements 
+
+To update Adobe Illustrator only: 
+
+.\winget.exe update --id=ARP\Machine\X86\ILST_30_1 -e --silent --accept-source-agreements --accept-package-agreements 
+
+To update Mozilla Firefox only: 
+
+.\winget.exe update --id=Mozilla.Firefox -e --silent --accept-source-agreements --accept-package-agreements 
+
+To update Java JRE only: 
+
+.\winget.exe update --id=Oracle.JavaRuntimeEnvironment -e --silent --accept-source-agreements --accept-package-agreements 
+
+ 
+
+Explanation: 
+
+winget install – Tells Windows Package Manager to install a package. 
+
+--id=Adobe.CreativeCloud – Specifies the exact package ID for Adobe Creative Cloud from the winget repository. 
+
+-e – Ensures an exact match on the package ID to avoid installing the wrong application. 
+
+ 
+
+If you get an error when trying to update an app like this: 
+
+image.pngRun this command 
+
+.\winget settings --enable BypassCertificatePinningForMicrosoftStore 
+
+ 
+
+ Then try the update command again 
+
+ 
+
+Uninstall a version: 
+winget uninstall --name "7-Zip 25.00 (x64)" --version 25.00 
+
+winget uninstall --name "Mozilla Firefox (x64 en-US)" --version 136.0.1 
+
+winget uninstall --name "Dell Command | Update for Windows Universal" --version 5.5.0 
+
+winget uninstall --name "Dell Command | Update for Windows Universal" --version 5.4.0 
+
+winget uninstall --name " DellInc.DellCommandUpdate" 
+
+winget uninstall --name "Adobe Acrobat (64-bit)" 
+
+winget uninstall --name "Adobe Creative Cloud" 
+
+winget install Adobe.Acrobat.Reader.64-bit 
+
+.\winget.exe update --id=Microsoft.Office -e --silent --accept-source-agreements --accept-package-agreements 
+
+ 
+
+.\winget.exe update --id= Dell.CommandUpdate.Universal -e --silent --accept-source-agreements --accept-package-agreements  
+
+Microsoft.VCRedist.2015+.x64    
+
+.\winget.exe update--id=Microsoft.DotNet.DesktopRuntime.8 -e --silent --accept-source-agreements --accept-package-agreements 
+
+ 
+
+.\winget.exe update --id=Notepad++.Notepad++ -e --silent --accept-source-agreements --accept-package-agreements 
+
+Microsoft.DotNet.DesktopRuntime.9 
